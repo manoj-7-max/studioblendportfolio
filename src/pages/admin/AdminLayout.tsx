@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet, useNavigate, useLocation, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
-import { LayoutDashboard, FolderKanban, LogOut, Menu } from "lucide-react";
+import { LayoutDashboard, FolderKanban, LogOut, Menu, FileText } from "lucide-react";
 import { toast } from "sonner";
 
 export default function AdminLayout() {
@@ -25,6 +25,7 @@ export default function AdminLayout() {
 
     const navItems = [
         { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
+        { icon: FileText, label: "Content Editor", path: "/admin/editor" },
         { icon: FolderKanban, label: "Projects", path: "/admin/projects" },
     ];
 
@@ -42,8 +43,8 @@ export default function AdminLayout() {
                         to={item.path}
                         onClick={() => setIsMobileOpen(false)}
                         className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${location.pathname === item.path
-                                ? "bg-indigo-600 text-white"
-                                : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            ? "bg-indigo-600 text-white"
+                            : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                             }`}
                     >
                         <item.icon className="w-5 h-5" />

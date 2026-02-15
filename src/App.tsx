@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import AdminLayout from "./pages/admin/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
+import Editor from "./pages/admin/Editor";
 import Projects from "./pages/admin/Projects";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
+            <Route path="editor" element={<Editor />} />
             <Route path="projects" element={<Projects />} />
           </Route>
         </Routes>

@@ -33,12 +33,14 @@ interface SiteContextType {
 }
 
 const defaultContent: SiteContent = {
-    heroTitle: "Unlock Your Brand's Potential",
-    heroSubtitle: "We help businesses grow by crafting unique digital experiences.",
-    aboutTitle: "About Us",
-    aboutText: "We are a creative agency dedicated to bringing your vision to life. With a passion for design and technology, we build solutions that matter.",
-    contactEmail: "studioblend0@gmail.com",
-    contactPhone: "+91 8610511096",
+    const defaultContent: SiteContent = {
+        heroTitle: "We Bring Your Brand to Life",
+        heroSubtitle: "Transform your digital presence with stunning videos, compelling graphics, and strategic social media marketing that drives real results.",
+        aboutTitle: "studioblend. Bold Results.",
+        aboutText: "We're a team of passionate digital creators who believe that every brand has a unique story to tell. Our mission is to help you tell that story in the most compelling and engaging way possible.\n\nFrom eye-catching videos to scroll-stopping social content, we combine creativity with data-driven strategy to deliver measurable results that matter.",
+        contactEmail: "studioblend0@gmail.com",
+        contactPhone: "+91 8610511096",
+    };
 };
 
 const SiteContext = createContext<SiteContextType | undefined>(undefined);

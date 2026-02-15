@@ -2,7 +2,11 @@ import { Button } from "./ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { useSite } from "../context/SiteContext";
+
 export function Hero() {
+  const { siteContent } = useSite();
+
   const scrollToContact = () => {
     const element = document.getElementById("contact");
     if (element) {
@@ -60,18 +64,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl sm:text-6xl lg:text-7xl mb-6 text-[#36454F]"
           >
-            We Bring Your{" "}
-            <motion.span
-              className="text-[#20C7B4] inline-block"
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{ duration: 5, repeat: Infinity }}
-            >
-              Brand
-            </motion.span>
-            <br />
-            to Life
+            {siteContent.heroTitle}
           </motion.h1>
 
           {/* Subheading */}
@@ -81,9 +74,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg sm:text-xl text-[#36454F]/70 mb-8 max-w-2xl mx-auto leading-relaxed"
           >
-            Transform your digital presence with stunning videos, compelling
-            graphics, and strategic social media marketing that drives real
-            results.
+            {siteContent.heroSubtitle}
           </motion.p>
 
           {/* CTA Buttons */}
