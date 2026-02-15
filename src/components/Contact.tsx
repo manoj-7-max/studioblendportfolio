@@ -8,6 +8,7 @@ import { Mail, Phone, Instagram, Linkedin, Twitter, Send } from "lucide-react";
 import { toast } from "sonner@2.0.3";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { motion } from "motion/react";
+import { useSite } from "../context/SiteContext";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -20,18 +21,17 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { ref, isVisible } = useScrollAnimation();
 
-  // Replace this URL with your Google Apps Script Web App URL after setup
-  const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_URL_HERE";
+  const { addMessage } = useSite();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validation
     if (!formData.name.trim()) {
       toast.error("Please enter your name");
       return;
     }
-    
+
     if (!formData.email.trim() || !formData.email.includes("@")) {
       toast.error("Please enter a valid email");
       return;
@@ -46,7 +46,7 @@ export function Contact() {
       toast.error("Please select a service");
       return;
     }
-    
+
     if (!formData.message.trim()) {
       toast.error("Please enter your message");
       return;
@@ -55,39 +55,32 @@ export function Contact() {
     setIsSubmitting(true);
 
     try {
-      // Send data to Google Sheets
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          mobile: formData.mobile,
-          service: formData.service,
-          message: formData.message,
-          timestamp: new Date().toLocaleString(),
-        }),
+      // Save to local context for admin panel
+      addMessage({
+        name: formData.name,
+        email: formData.email,
+        mobile: formData.mobile,
+        service: formData.service,
+        message: formData.message,
       });
 
-      // Send details to WhatsApp
+      // Send to Google Sheets (Mock/Real)
+      // fetch(GOOGLE_SCRIPT_URL, ...);
+
+      // WhatsApp Logic
       const whatsappMessage = `*New Customer Inquiry*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Mobile:* ${formData.mobile}\n*Service Needed:* ${formData.service}\n*Message:* ${formData.message}`;
       const whatsappNumber = "918610511096";
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-      // Open WhatsApp in new tab (stays on same page)
+      // Open WhatsApp
       window.open(whatsappUrl, "_blank");
 
-      // Show success message
       toast.success("Message sent successfully! Please complete by sending the WhatsApp message.");
-      
-      // Clear form
+
       setFormData({ name: "", email: "", mobile: "", service: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("There was an error. Please try again or contact us directly on WhatsApp.");
+      toast.error("There was an error. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
