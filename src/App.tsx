@@ -18,6 +18,6 @@ export default function App() {
         </Route>
       </Routes>
       <Toaster position="bottom-right" closeButton />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
