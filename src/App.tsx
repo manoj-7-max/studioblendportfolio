@@ -1,60 +1,23 @@
-import { useState } from "react";
-import { Navigation } from "./components/Navigation";
-import { Hero } from "./components/Hero";
-import { About } from "./components/About";
-import { Services } from "./components/Services";
-import { Portfolio } from "./components/Portfolio";
-import { Testimonials } from "./components/Testimonials";
-import { Contact } from "./components/Contact";
-import { Footer } from "./components/Footer";
-import { ServiceDetail } from "./components/ServiceDetail";
-import { Toaster } from "./components/ui/sonner";
-import { servicesData } from "./data/servicesData";
-import { AnimatePresence } from "framer-motion";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import AdminLayout from "./pages/admin/AdminLayout";
+import Dashboard from "./pages/admin/Dashboard";
+import Projects from "./pages/admin/Projects";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function App() {
-  const [selectedService, setSelectedService] = useState<string | null>(null);
-
-  const handleServiceClick = (serviceTitle: string) => {
-    setSelectedService(serviceTitle);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleBackToHome = () => {
-    setSelectedService(null);
-  };
-
   return (
-    <div className="min-h-screen">
-      <AnimatePresence mode="wait">
-        {selectedService ? (
-          <ServiceDetail
-            key={selectedService}
-            {...servicesData[selectedService as keyof typeof servicesData]}
-            onBack={handleBackToHome}
-          />
-        ) : (
-          <div key="home">
-            <Navigation />
-            <Hero />
-            <div id="about">
-              <About />
-            </div>
-            <div id="services">
-              <Services onServiceClick={handleServiceClick} />
-            </div>
-            <div id="work">
-              <Portfolio />
-            </div>
-            <Testimonials />
-            <div id="contact">
-              <Contact />
-            </div>
-            <Footer />
-          </div>
-        )}
-      </AnimatePresence>
-      <Toaster position="bottom-right" />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="projects" element={<Projects />} />
+        </Route>
+      </Routes>
+      <Toaster position="bottom-right" closeButton />
+    </BrowserRouter>
   );
 }
