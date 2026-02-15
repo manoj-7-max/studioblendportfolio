@@ -46,6 +46,7 @@
             "react-responsive-masonry": "*",
             "react-router-dom": "^6.30.3",
             "recharts": "^2.15.2",
+            "serve": "^14.2.5",
             "sonner": "^2.0.3",
             "tailwind-merge": "*",
             "vaul": "^1.1.2"
@@ -57,6 +58,7 @@
       },
       "scripts": {
             "dev": "vite",
-            "build": "vite build"
+            "build": "vite build",
+            "start": "serve -s build -l 3000"
       }
 }
