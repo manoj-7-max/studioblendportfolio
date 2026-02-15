@@ -1,6 +1,10 @@
 services:
   - type: web
     name: portfolio-website
-    env: node
+    env: static
     buildCommand: npm run build
-    startCommand: npm start
+    staticPublishPath: ./build
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
