@@ -64,20 +64,19 @@ export function Contact() {
         message: formData.message,
       });
 
+      // Send to Google Sheets (Mock/Real)
+      // fetch(GOOGLE_SCRIPT_URL, ...);
+
       // WhatsApp Logic
       const whatsappMessage = `*New Customer Inquiry*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Mobile:* ${formData.mobile}\n*Service Needed:* ${formData.service}\n*Message:* ${formData.message}`;
-      // Use the business phone number
       const whatsappNumber = "918610511096";
-
-      // Create WhatsApp URL
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-      // Open WhatsApp in a new tab
+      // Open WhatsApp
       window.open(whatsappUrl, "_blank");
 
-      toast.success("Redirecting to WhatsApp to send your message...");
+      toast.success("Message sent successfully! Please complete by sending the WhatsApp message.");
 
-      // Reset form
       setFormData({ name: "", email: "", mobile: "", service: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);

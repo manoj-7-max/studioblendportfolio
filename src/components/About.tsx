@@ -116,8 +116,8 @@ export function About() {
               />
             </motion.div>
           </motion.div>
-        </div >
-      </div >
-    </section >
+        </div>
+      </div>
+    </section>
   );
 }
