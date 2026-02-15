@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Mail, Phone, Instagram, Linkedin, Twitter, Send } from "lucide-react";
 import { toast } from "sonner@2.0.3";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { useSite } from "../context/SiteContext";
 
 export function Contact() {
