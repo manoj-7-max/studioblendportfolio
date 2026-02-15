@@ -131,7 +131,7 @@ export function Footer() {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/60 text-sm">
             © 2026 studioblend. All rights reserved.
-            <a href="/admin" className="ml-4 text-xs text-white/20 hover:text-white/40">Admin</a>
+            <a href="/#/admin" className="ml-4 text-xs text-white/20 hover:text-white/40">Admin</a>
           </p>
           <div className="flex gap-4">
             <a
